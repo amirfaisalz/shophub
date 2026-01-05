@@ -1,15 +1,17 @@
 {
-  "name": "builderio-nextjs-integration",
+  "name": "shophub",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5555",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
     "@builder.io/react": "^9.1.0",
+    "@builder.io/sdk": "^6.2.0",
+    "@builder.io/sdk-react-nextjs": "^0.24.0",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
@@ -42,6 +44,8 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
+    "graphql": "^16.12.0",
+    "graphql-request": "^7.4.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",

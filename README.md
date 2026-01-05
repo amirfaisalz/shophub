@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShopHub - Scalable SEO with Next.js
 
-## Getting Started
+A production-ready e-commerce storefront demonstrating how to build **SEO-optimized pages at scale** with Next.js 15 and Hygraph CMS. Even with thousands of product pages, every page maintains excellent SEO performance.
 
-First, run the development server:
+## 🚀 Key SEO Features
+
+- **Dynamic Metadata Generation** - Each product page generates unique, optimized meta titles (40-60 chars) and descriptions (140-160 chars)
+- **Automatic Sitemap** - Dynamically generates `sitemap.xml` from all products in your CMS
+- **Robots.txt** - Proper crawler directives with sitemap reference
+- **JSON-LD Structured Data** - Product, Organization, Website, and BreadcrumbList schemas
+- **Open Graph & Twitter Cards** - Social sharing optimized for all pages
+- **Static Generation (ISR)** - Pages are pre-rendered and revalidated every 30 minutes
+- **Semantic HTML** - Proper heading hierarchy (H1, H2) and accessible markup
+- **Anchor Title Attributes** - All links have descriptive titles for SEO and accessibility
+
+## 📦 Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **CMS**: Hygraph (GraphQL Headless CMS)
+- **Styling**: Tailwind CSS 4
+- **UI Components**: shadcn/ui
+- **Validation**: Zod
+
+## 🛠️ Getting Started
+
+### 1. Clone & Install
+
+```bash
+git clone <your-repo-url>
+cd builderio-nextjs-integration
+npm install
+```
+
+### 2. Environment Variables
+
+Copy the example env file and fill in your values:
+
+```bash
+cp env.example .env.local
+```
+
+Required variables:
+
+| Variable                  | Description                                             |
+| ------------------------- | ------------------------------------------------------- |
+| `NEXT_PUBLIC_HYGRAPH_URL` | Your Hygraph Content API endpoint                       |
+| `HYGRAPH_TOKEN`           | Hygraph API token (for authenticated requests)          |
+| `NEXT_PUBLIC_SITE_URL`    | Your production domain (e.g., `https://yourdomain.com`) |
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:5555](http://localhost:5555) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 📁 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── page.tsx          # Homepage with product grid
+│   ├── products/[slug]/  # Dynamic product pages
+│   ├── sitemap.ts        # Dynamic sitemap generation
+│   ├── robots.ts         # Robots.txt configuration
+│   ├── not-found.tsx     # Custom 404 page
+│   └── layout.tsx        # Root layout with metadata
+├── components/           # UI components
+└── lib/
+    ├── hygraph.ts        # GraphQL client & queries
+    └── types.ts          # TypeScript types & Zod schemas
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔍 How SEO Scales
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **ISR (Incremental Static Regeneration)** - Pages are statically generated at build time and revalidated on-demand, ensuring fast load times without sacrificing freshness.
 
-## Deploy on Vercel
+2. **Dynamic `generateMetadata()`** - Each product page fetches its data and generates unique metadata, so thousands of pages each have proper SEO without manual effort.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Automatic Sitemap** - The `sitemap.ts` queries all products from your CMS and generates a complete sitemap, updated with each deployment.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Structured Data** - JSON-LD schemas are generated per-page with actual product data (name, price, availability), improving rich snippet eligibility.
+
+## 📄 License
+
+MIT
