@@ -130,14 +130,19 @@ export default async function ProductPage({ params }: ProductPageParams) {
   const validProduct = ProductSchema.parse(response.products[0]);
 
   // Fetch related products
-  const relatedResponse = await hygraph.request<RelatedProductsResponse>(
-    GET_RELATED_PRODUCTS,
-    {
-      excludeId: validProduct.id,
-    }
-  );
-
-  const relatedProducts = relatedResponse.products;
+  let relatedProducts: RelatedProductsResponse["products"] = [];
+  try {
+    const relatedResponse = await hygraph.request<RelatedProductsResponse>(
+      GET_RELATED_PRODUCTS,
+      {
+        excludeId: validProduct.id,
+      }
+    );
+    relatedProducts = relatedResponse.products;
+  } catch (error) {
+    console.warn(`Failed to fetch related products for ${slug}:`, error);
+    // Continue without related products
+  }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
 
